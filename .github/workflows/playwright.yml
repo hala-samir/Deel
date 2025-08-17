@@ -22,7 +22,7 @@ jobs:
 
         #step 1 maven installation
       - name: Install maven
-        run: mvn install
+        run: mvn clean install -U
 
         #step2 run the tests
       - name: Run tests
