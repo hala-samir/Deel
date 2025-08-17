@@ -1,0 +1,36 @@
+name: Playwright Tests
+# this workflow will be run on pushing and on pulling code to the main branch
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  playwright: #job name
+    name: 'Playwright Tests'
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright/java:v1.49.0-noble
+      options: --user 1001
+    steps:
+      #actions
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+        #step 1 maven installation
+      - name: Install maven
+        run: mvn install
+
+        #step2 run the tests
+      - name: Run tests
+        run: mvn test
+
+      #step3 generate the extent report
+      - name: Upload Extent Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: execution-report
+          path: target/cucumber-report.html
