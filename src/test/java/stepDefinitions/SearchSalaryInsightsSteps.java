@@ -6,6 +6,9 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
 import pages.SalaryInsightsPage;
+import utilities.ReadCSVHandler;
+
+import java.util.List;
 
 public class SearchSalaryInsightsSteps {
     SalaryInsightsPage salaryInsightsPage ;
@@ -31,4 +34,5 @@ public class SearchSalaryInsightsSteps {
         Assert.assertTrue(salaryInsightsPage.getResultHeadingText().contains(roleName), roleName+" the expected role didn't appear");
         Assert.assertTrue(salaryInsightsPage.getResultHeadingText().contains(countryName),  countryName+" the expected country didn't appear");
     }
+
 }

@@ -24,6 +24,7 @@ public class PropertiesHandler {
         return prop;
     }
 
+
     // getting a specific property
     public static String getProperty(String key) {
         return initializeTestConfigurations().getProperty(key);

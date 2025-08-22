@@ -5,6 +5,10 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.WaitForSelectorState;
 
+import java.nio.file.Paths;
+
+
+
 public class PageManager {
     private Page page;
 
@@ -48,5 +52,12 @@ public class PageManager {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public String takeScreenshot(){
+        String path = System.getProperty("user.dir")+"\\screenshots\\"+ System.currentTimeMillis()+".png";
+        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get(path)).setFullPage(true));
+        return path;
+
     }
 }
